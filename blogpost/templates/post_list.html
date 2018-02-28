@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Django Blog 2.0
+{% endblock %}
+
+{% block content %}
+    <h1>Post List</h1>
+    {% for post in posts %}
+        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+        <p>{{ post.publish }} by {{ post.author }}</p>
+
+        {{ post.body|truncatewords:25|linebreaks }}
+    {% endfor %}
+
+{% endblock %}

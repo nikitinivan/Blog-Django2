@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% block title %}{% endblock %}</title>
+{#  <link href="{% static "css/bootstrap-grid.css" %}" rel="stylesheet">#}
+  <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+  <link href="{% static "css/blog.css" %}" rel="stylesheet">
+</head>
+
+<body>
+  <div id="content">
+    {% block content %} {% endblock %}
+  </div>
+  <div id="sidebar">
+    <h2>Sidebar</h2>
+    <p>sidebar for blog</p>
+  </div>
+</body>
+
+</html>
