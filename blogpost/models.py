@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-
+from django.urls import reverse
 
 # Custom manager for retrieving posts from db
 class PublishedManager(models.Manager):
@@ -30,10 +30,20 @@ class Post(models.Model):
 
     # Managers:
     objects = models.Manager() # Default Manager
-    published = PublishedManager() # Custom manager 
+    published = PublishedManager() # Custom manager
 
     class Meta:
         ordering = ('-publish',)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:post_detail',
+                args=[
+                    self.publish.year,
+                    self.publish.strftime('%m'),
+                    self.publish.strftime('%d'),
+                    self.slug
+                ]
+            )
